@@ -58,7 +58,7 @@ def home(request):
 def catalog(request):
     media = Media.objects.first()
     categories = Category.objects.all()
-    return render(request, 'categies.html', {'categories': categories, 'media': media})
+    return render(request, 'catalog.html', {'categories': categories, 'media': media})
 
 
 

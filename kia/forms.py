@@ -15,6 +15,7 @@ class TokenForm(forms.Form):
         self.fields['token'].widget.attrs['class'] = 'form-control input-lg'
         self.fields['token'].widget.attrs['placeholder'] = 'Enter token'
 
+
     def clean_token(self):
         token = Token.objects.filter(token=self.cleaned_data['token'], active=True)
         if not token.exists():
@@ -30,7 +31,12 @@ class TokenForm(forms.Form):
 
 
 class MessageForm(forms.ModelForm):
-
     class Meta:
         model = Message
-        fields = ('name', 'email', 'message', )
+        fields = ('name', 'email', 'message',)
+
+    def __init__(self, *args, **kwargs):
+        super(MessageForm, self).__init__(args, **kwargs)
+        self.fields['name'].widget.attrs['class'] = 'form-control input-md'
+        self.fields['email'].widget.attrs['class'] = 'form-control input-md'
+        self.fields['message'].widget.attrs['class'] = 'form-control input-md'

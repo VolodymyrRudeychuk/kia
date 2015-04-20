@@ -39,8 +39,10 @@ class Category(models.Model):
 
 class Media(models.Model):
     TYPES = (
-        (1, 'Video'),
-        (2, 'Audio'),
+        (1, 'English'),
+        (2, 'French'),
+        (3, 'Video'),
+        (4, 'Audio'),
     )
 
     name = models.CharField(max_length=255)
