@@ -1,24 +1,65 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import (
     Front,
+    Category,
+    Media,
     # Message,
 )
-from django.http import HttpResponse, HttpResponseBadRequest
+
+from django.contrib.auth import logout
+from models import Statistic
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+from .forms import TokenForm, MessageForm
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from django.forms import ModelForm
 
-
-# class MessageForm(ModelForm):
-#     class Meta:
-#         model = Message
-
-
+# @login_required
+@csrf_exempt
 def home(request):
-    context = {
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = TokenForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            form.login_user(request)
+            Statistic.objects.create(token=form.token)
+            return HttpResponseRedirect('/catalog/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = TokenForm()
+
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        message_form = MessageForm(request.POST)
+        # check whether it's valid:
+        if message_form.is_valid():
+            message_form.save()
+            return HttpResponseRedirect('/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        message_form = MessageForm()
+
+
+    return render(request, 'home.html', {
         'front': Front.objects.first(),
-    }
-    template = 'home.html'
-    return render(request, template, context)
+        'message_form':  message_form,
+        'token_form': form,
+    })
+
+
+def catalog(request):
+    media = Media.objects.first()
+    categories = Category.objects.all()
+    return render(request, 'categies.html', {'categories': categories, 'media': media})
+
 
 
 # @csrf_exempt
