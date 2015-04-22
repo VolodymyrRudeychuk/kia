@@ -56,9 +56,19 @@ def home(request):
 
 
 def catalog(request):
-    media = Media.objects.first()
-    categories = Category.objects.all()
-    return render(request, 'catalog.html', {'categories': categories, 'media': media})
+    category_id = int(request.GET.get('category', 1))
+    language = int(request.GET.get('language', 1))
+
+    category = Category.objects.get(id=category_id, language=1)
+    media = Media.objects.filter(category=category)
+    video_categories = Category.objects.filter(type=1)
+    audio_categories = Category.objects.filter(type=2)
+
+    return render(request, 'catalog.html', {
+        'current_category': category,
+        'audio_categories': audio_categories,
+        'video_categories': video_categories,
+        'media': media})
 
 
 

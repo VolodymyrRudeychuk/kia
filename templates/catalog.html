@@ -1,0 +1,74 @@
+{% load staticfiles %}
+
+{% block scripts %}{% include 'scripts.html' %}{% endblock %}
+{% block head %}{% include 'head.html' %}{% endblock %}
+
+
+
+<body>
+
+<div class="container">
+
+    <div class="row">
+<div role="tabpanel">
+
+
+ <div class="col-md-4">
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" {% if current_category.type == 2 %} class="active"{% endif %}><a href="#home" aria-controls="audio" role="tab" data-toggle="tab">Audio</a></li>
+    <li role="presentation" {% if current_category.type == 1 %} class="active"{% endif %}><a href="#profile" aria-controls="Video" role="tab" data-toggle="tab">Video</a></li>
+
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane{% if current_category.type == 2 %} active{% endif %}" id="home"> <ul class="nav nav-pills nav-stacked bord">
+           {% for item in audio_categories %}
+                 <li role="presentation" {% if current_category.id == item.id %} class="active" {% endif %}><a href="?category={{ item.id }}">{{ item.title }}</a></li>
+            {% endfor %}
+            </ul></div>
+    <div role="tabpanel" class="tab-pane {% if current_category.type == 1 %} active{% endif %}" id="profile">
+    <ul class="nav nav-pills nav-stacked bord">
+        {% for item in video_categories %}
+                <li role="presentation" {% if current_category.id == item.id %}class="active"{% endif %}><a href="?category={{ item.id }}">{{ item.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+        <div class="col-md-8">
+            <h3 class="catalog">{{ current_category.title }}</h3>
+            {% for item in media %}
+                <div class="catalog_a">
+                     <span>{{ item.name }}</span>
+            <audio style="width: 100%" id="player2" src="{{ item.url }}" preload="none" type="audio/mp3" controls="controls">
+            </audio>
+
+                </div>
+            {% endfor %}
+        </div>
+{#        <div class="col-md-5">#}
+{#            <h3 class="catalog">Video</h3>#}
+{#            <div class="video bord2">#}
+{##}
+{#                <a href="{{ media.url }}" target="_blank">{{ media.name }}</a><br/>#}
+{##}
+{#                	<video style="width: 100%" id="player1" controls="controls" preload="none" poster="../media/echo-hereweare.jpg">#}
+{##}
+{#		<source src="http://download1662.mediafire.com/93421b44extg/llqqnkgb1c6qdwe/Sample+-+The+M+Machine+-+Tiny+Anthem.mp4"  type="video/mp4" />#}
+{##}
+{#		<track kind="subtitles" src="../media/mediaelement.srt" srclang="en"></track>#}
+{##}
+{#	</video>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+</div>
+</body>
+

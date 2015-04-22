@@ -10,6 +10,8 @@ from .models import (
 )
 # from .models import Message
 
+class MediaInline(admin.TabularInline):
+    model = Media
 
 class MessageAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'message', 'date')
@@ -33,8 +35,12 @@ class StatAdmin(admin.ModelAdmin):
         return obj.token.user
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    inlines = [MediaInline, ]
+
+
 admin.site.register(Media, admin.ModelAdmin)
-admin.site.register(Category, admin.ModelAdmin)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Front, FrontAdmin)
 admin.site.register(Token, TokenAdmin)
 admin.site.register(Statistic, StatAdmin)

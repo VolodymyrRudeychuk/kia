@@ -31,25 +31,29 @@ class Statistic(models.Model):
 
 
 class Category(models.Model):
+    TYPES = (
+        (1, 'Video'),
+        (2, 'Audio'),
+
+    )
     title = models.CharField(max_length='50')
+    type = models.IntegerField(choices=TYPES)
 
     def __unicode__(self):
         return self.title
 
 
 class Media(models.Model):
-    TYPES = (
+    LANGUAGES = {
         (1, 'English'),
         (2, 'French'),
-        (3, 'Video'),
-        (4, 'Audio'),
-    )
+    }
+    language = models.IntegerField(choices=LANGUAGES)
 
     name = models.CharField(max_length=255)
     description = models.TextField()
     url = models.URLField()
     category = models.ForeignKey(Category)
-    type = models.IntegerField(choices=TYPES)
 
     def __unicode__(self):
         return self.name
