@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'kia',
+    'kia_app',
 
 
 )
@@ -82,7 +83,7 @@ WSGI_APPLICATION = 'kia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'kiadb.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db'),
     }
 }
 

@@ -56,15 +56,15 @@ def home(request):
 
 
 def catalog(request):
-    category_id = int(request.GET.get('category', 1))
+    category_id = int(request.GET.get('category', 3))
     language = int(request.GET.get('language', 1))
-
-    category = Category.objects.get(id=category_id, language=1)
-    media = Media.objects.filter(category=category)
-    video_categories = Category.objects.filter(type=1)
-    audio_categories = Category.objects.filter(type=2)
+    category = Category.objects.get(id=category_id)
+    media = Media.objects.filter(category=category, category__language=language)
+    video_categories = Category.objects.filter(type=1, language=language)
+    audio_categories = Category.objects.filter(type=2, language=language)
 
     return render(request, 'catalog.html', {
+        'current_language': language,
         'current_category': category,
         'audio_categories': audio_categories,
         'video_categories': video_categories,

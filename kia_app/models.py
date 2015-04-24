@@ -17,7 +17,7 @@ class Message(models.Model):
 
 class Token(models.Model):
     token = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name='tkn')
     active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -31,25 +31,27 @@ class Statistic(models.Model):
 
 
 class Category(models.Model):
+
     TYPES = (
         (1, 'Video'),
         (2, 'Audio'),
 
     )
+
+    LANGUAGES = {
+        (1, 'English'),
+        (2, 'French'),
+    }
+
     title = models.CharField(max_length='50')
     type = models.IntegerField(choices=TYPES)
+    language = models.IntegerField(choices=LANGUAGES)
 
     def __unicode__(self):
         return self.title
 
 
 class Media(models.Model):
-    LANGUAGES = {
-        (1, 'English'),
-        (2, 'French'),
-    }
-    language = models.IntegerField(choices=LANGUAGES)
-
     name = models.CharField(max_length=255)
     description = models.TextField()
     url = models.URLField()

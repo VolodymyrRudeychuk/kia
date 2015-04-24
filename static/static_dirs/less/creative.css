@@ -411,11 +411,25 @@ body {
 #paralax1 {
   background-image: url(../img/homebg.png);
 }
-#about {
-  background-image: url(../img/dark_10-wallpaper-3840x2160.jpg);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  background-color: #6b5ca2;
+.catalog {
+  text-align: center;
+}
+.catalog_a {
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  padding: 2%;
+  margin-bottom: 2%;
+}
+.catalog_a span {
+  color: #222222;
+  display: inline-block;
+  margin-bottom: 2%;
+  font-weight: 700;
+  font-size: 16px;
+}
+.lang {
+  padding: 5%;
+}
+.tab {
+  margin-top: 6%;
 }

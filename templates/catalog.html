@@ -1,19 +1,38 @@
 {% load staticfiles %}
 
-{% block scripts %}{% include 'scripts.html' %}{% endblock %}
+<head>
 {% block head %}{% include 'head.html' %}{% endblock %}
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><!-- jQuery Latest -->
+	<script src="{% static 'build/mediaelement-and-player.min.js' %}"></script><!-- Audio/Video Player jQuery -->
+	<script src="{% static 'build/mep-feature-playlist.js' %}"></script><!-- Playlist JavaSCript -->
+
+	<link rel="stylesheet" href="{% static 'css/progression-player.css' %}" /><!-- Default Player Styles -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+
+	<link rel="stylesheet" href="{% static 'css/skin-minimal-light.css' %}" />
+
+</head>
 
 
 
 <body>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="lang center-block" style="text-align: center">
+                <a class="btn btn-default {% if current_language == 1 %}active{% endif %}" href="?language=1">English</a>
+                <a class="btn btn-default {% if current_language == 2 %}active{% endif %}" href="?language=2">French</a>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
 
     <div class="row">
-<div role="tabpanel">
 
-
- <div class="col-md-4">
+ <div class="col-md-3">
+ <div class="tab">
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" {% if current_category.type == 2 %} class="active"{% endif %}><a href="#home" aria-controls="audio" role="tab" data-toggle="tab">Audio</a></li>
@@ -40,35 +59,75 @@
 </div>
 
 </div>
+<!-- close .responsive-wrapper -->
 
+        <div class="col-md-9">
 
-        <div class="col-md-8">
-            <h3 class="catalog">{{ current_category.title }}</h3>
-            {% for item in media %}
-                <div class="catalog_a">
-                     <span>{{ item.name }}</span>
-            <audio style="width: 100%" id="player2" src="{{ item.url }}" preload="none" type="audio/mp3" controls="controls">
-            </audio>
+            <h3 class="catalog active"><strong>{{ current_category.title }}<strong></h3>
+         {% if current_category.type == 2 %}
+            <div class="progression-playlist-height responsive-wrapper responsive-audio" style="max-width:100%; padding-bottom:174px;"><!-- Adjust padding-bottom as needed so the playlist doesn't cover content below -->
+                <audio class="progression-playlist progression-skin progression-minimal-light progression-audio-player" controls="controls" preload="none">                     {% for item in media %}
+                    <source src="{{ item.url }}" title="{{ item.name }}" type="audio/mpeg"/>
+                    {% endfor %}
+                </audio>
 
-                </div>
-            {% endfor %}
+        {% else %}
+
+                <video style="width: 100%;"  class="progression-single progression-skin progression-minimal-light" controls="controls" controls="controls" preload="none" poster="../media/big_buck_bunny.jpg">
+                    {% for item in media %}
+                    <source src="{{ item.url }}" type="video/mp4" title="{{ item.name }}">
+                    {% endfor %}
+                </video>
+
+         {% endif %}
+            </div>
+
         </div>
-{#        <div class="col-md-5">#}
-{#            <h3 class="catalog">Video</h3>#}
-{#            <div class="video bord2">#}
-{##}
-{#                <a href="{{ media.url }}" target="_blank">{{ media.name }}</a><br/>#}
-{##}
-{#                	<video style="width: 100%" id="player1" controls="controls" preload="none" poster="../media/echo-hereweare.jpg">#}
-{##}
-{#		<source src="http://download1662.mediafire.com/93421b44extg/llqqnkgb1c6qdwe/Sample+-+The+M+Machine+-+Tiny+Anthem.mp4"  type="video/mp4" />#}
-{##}
-{#		<track kind="subtitles" src="../media/mediaelement.srt" srclang="en"></track>#}
-{##}
-{#	</video>#}
-{#            </div>#}
-{#        </div>#}
-    </div>
 </div>
+
+
+
+
+{#{% block contact %}{% include 'contact.html' %}{% endblock %}#}
+
+ <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'js/jquery.fittext.js' %}"></script>
+
+<script>
+$('.progression-playlist').mediaelementplayer({
+	audioWidth: 700, // width of audio player
+	audioHeight:40, // height of audio player
+	startVolume: 0.5, // initial volume when the player starts
+	loop: false, // useful for <audio> player loops
+	features: ['playlistfeature', 'prevtrack', 'playpause', 'nexttrack','current', 'progress', 'duration', 'volume', 'playlist'],
+	playlist: true, //Playlist Show
+	playlistposition: 'bottom' //Playlist Location
+	});
+</script>
+
+<script>
+$('.progression-single').mediaelementplayer({
+	audioWidth: 400, // width of audio player
+	audioHeight:40, // height of audio player
+	startVolume: 0.5, // initial volume when the player starts
+	features: ['playpause','current','progress','duration','tracks','volume','fullscreen']
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
