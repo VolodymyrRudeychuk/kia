@@ -40,20 +40,19 @@
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" {% if current_category.type == 2 %} class="active"{% endif %}><a href="#home" aria-controls="audio" role="tab" data-toggle="tab">Audio</a></li>
     <li role="presentation" {% if current_category.type == 1 %} class="active"{% endif %}><a href="#profile" aria-controls="Video" role="tab" data-toggle="tab">Video</a></li>
-
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane{% if current_category.type == 2 %} active{% endif %}" id="home"> <ul class="nav nav-pills nav-stacked bord">
            {% for item in audio_categories %}
-                 <li role="presentation" {% if current_category.id == item.id %} class="active" {% endif %}><a href="?category={{ item.id }}">{{ item.title }}</a></li>
+                 <li role="presentation" {% if current_category.id == item.id %} class="active" {% endif %}><a href="?category={{ item.id }}&language={{ current_language }}">{{ item.title }}</a></li>
             {% endfor %}
             </ul></div>
     <div role="tabpanel" class="tab-pane {% if current_category.type == 1 %} active{% endif %}" id="profile">
     <ul class="nav nav-pills nav-stacked bord">
         {% for item in video_categories %}
-                <li role="presentation" {% if current_category.id == item.id %}class="active"{% endif %}><a href="?category={{ item.id }}">{{ item.title }}</a></li>
+                <li role="presentation" {% if current_category.id == item.id %}class="active"{% endif %}><a href="?category={{ item.id }}&language={{ current_language }}">{{ item.title }}</a></li>
         {% endfor %}
     </ul>
 
