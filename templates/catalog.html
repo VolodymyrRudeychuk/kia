@@ -24,8 +24,8 @@
     <div class="row">
         <div class="col-md-3">
             <div class="lang center-block" style="text-align: center">
-                <a class="btn btn-default {% if current_language == 1 %}active{% endif %}" href="?language=1">English</a>
-                <a class="btn btn-default {% if current_language == 2 %}active{% endif %}" href="?language=2">French</a>
+                <a class="btn btn-default {% if current_language == 1 %}active{% endif %}" href="?language=1&category={{ current_category.id }}">English</a>
+                <a class="btn btn-default {% if current_language == 2 %}active{% endif %}" href="?language=2&category={{ current_category.id }}">French</a>
             </div>
         </div>
     </div>
