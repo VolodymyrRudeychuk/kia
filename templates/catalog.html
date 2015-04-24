@@ -17,6 +17,9 @@
 
 
 <body>
+
+{% block nav %}{% include 'nav.html' %}{% endblock %}
+<section id="mediacatalog">
 <div class="container">
     <div class="row">
         <div class="col-md-3">
@@ -85,9 +88,11 @@
         </div>
 </div>
 
+</section>
 
+{% block about %}{% include 'about.html' %}{% endblock %}
 
-
+{% block contact %}{% include 'contact.html' %}{% endblock %}
 {#{% block contact %}{% include 'contact.html' %}{% endblock %}#}
 
  <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -95,7 +100,13 @@
     <!-- Plugin JavaScript -->
     <script src="{% static 'js/jquery.easing.min.js' %}"></script>
     <script src="{% static 'js/jquery.fittext.js' %}"></script>
+    <script src="{% static 'js/creative.js' %}"></script>
+    <script src="{% static 'js/simpleparallax.min.js' %}"></script>
 
+    <script>
+        $('.parallax').simpleParallax();
+
+    </script>
 <script>
 $('.progression-playlist').mediaelementplayer({
 	audioWidth: 700, // width of audio player
