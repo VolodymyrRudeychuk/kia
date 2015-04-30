@@ -19,7 +19,7 @@ from .forms import TokenForm, MessageForm
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
-# @login_required
+
 @csrf_exempt
 def home(request):
     if request.method == 'POST':
@@ -55,10 +55,17 @@ def home(request):
     })
 
 
+@login_required
+@csrf_exempt
 def catalog(request):
-    category_id = int(request.GET.get('category', 3))
     language = int(request.GET.get('language', 1))
-    category = Category.objects.get(id=category_id)
+    category_id = request.GET.get('category', None)
+
+    if category_id is None:
+        category = Category.objects.filter(language=language).first()
+    else:
+        category = Category.objects.get(id=int(category_id))
+
     media = Media.objects.filter(category=category, category__language=language)
     video_categories = Category.objects.filter(type=1, language=language)
     audio_categories = Category.objects.filter(type=2, language=language)

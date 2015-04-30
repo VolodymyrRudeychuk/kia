@@ -148,9 +148,8 @@ header {
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
-  background-color: #fff;
   text-align: center;
-  color: #222222;
+  color: white;
 }
 header .header-content {
   position: relative;
@@ -158,11 +157,13 @@ header .header-content {
   padding: 100px 15px 100px;
   width: 100%;
 }
-header .header-content .header-content-inner h1 {
+header .header-content .header-content-inner h1,
+header .header-content .header-content-inner h4 {
   font-weight: 700;
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
+  color: #222222;
 }
 header .header-content .header-content-inner hr {
   margin: 30px auto;
@@ -180,6 +181,8 @@ header .header-content .header-content-inner p {
   header .header-content {
     position: absolute;
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     padding: 0 50px;
   }
@@ -402,14 +405,17 @@ body {
   height: 250px;
   position: absolute;
   bottom: 50px;
-  display: none;
 }
-.parallax {
-  height: 100%;
+#about {
+  width: 100%;
+  min-height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
   background-size: cover;
-}
-#paralax1 {
-  background-image: url(../img/homebg.png);
+  -o-background-size: cover;
+  background-color: #6b5ca2;
+  text-align: center;
+  color: #222222;
 }
 .catalog {
   text-align: center;
@@ -432,4 +438,34 @@ body {
 }
 .tab {
   margin-top: 6%;
+}
+#contact {
+  width: 100%;
+  min-height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-color: #fffbfb;
+  text-align: center;
+  color: #222222;
+}
+#mediacatalog {
+  width: 100%;
+  min-height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-color: #fffbfb;
+  text-align: center;
+  color: #222222;
+  text-align: left;
+}
+.parallax {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-image: url("../img/aboutbg1.png");
 }

@@ -154,7 +154,6 @@ aside {
         }
     }
 }
-
 // Homepage Header
 
 header {
@@ -162,22 +161,22 @@ header {
     width: 100%;
     min-height: auto;
     .background-cover;
-    background-color: #fff;
-//    background-position: center;
-//    background-image: url('../img/header.jpg');
+//  background: url('../img/header.png') center;
+//    background-color: #fff;
     text-align: center;
-    color: @theme-dark;
+    color: white;
     .header-content {
         position: relative;
         text-align: center;
         padding: 100px 15px 100px;
         width: 100%;
         .header-content-inner {
-            h1 {
+            h1, h4 {
                 font-weight: 700;
                 text-transform: uppercase;
                 margin-top: 0;
                 margin-bottom: 0;
+                color: @theme-dark;
             }
             hr {
                 margin: 30px auto;
@@ -195,6 +194,8 @@ header {
         .header-content {
             position: absolute;
             top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
             transform: translateY(-50%);
             padding: 0 50px;
             .header-content-inner {
@@ -350,48 +351,23 @@ body {
     webkit-tap-highlight-color: @theme-dark;
 }
 
-.child1{
+
+              .child1 {
   height: 250px;
   position: absolute;
   bottom: 50px;
-  display: none;
+
 }
 
 
-.parallax {
-
-  height: 100%;
-  background-size: cover;
-  background-size: cover;
+#about {
+  width: 100%;
+    min-height: 100%;
+    .background-cover;
+    background-color: @theme-primary;
+    text-align: center;
+    color: @theme-dark;
 }
-
-#paralax1 { background-image: url(../img/homebg.png); }
-
-
-
-//d
-//.parallax {
-//  perspective: 1px;
-//  height: 100vh;
-//  overflow-x: hidden;
-//  overflow-y: auto;
-//}
-//
-//.parallax__layer {
-//  position: absolute;
-//  top: 0;
-//  right: 0;
-//  bottom: 0;
-//  left: 0;
-//}
-//
-//.parallax__layer--base {
-//  transform: translateZZ(-1px) scale(2);
-//}
-//
-//.parallax__layer--back {
-//  transform: translateZ(-2px) scale(3);
-//}
 
 .catalog {
   text-align: center;
@@ -420,6 +396,34 @@ body {
 
 .tab {
   margin-top: 6%;
+}
+
+
+#contact {
+  width: 100%;
+    min-height: 100%;
+    .background-cover;
+    background-color: #fffbfb;
+    text-align: center;
+    color: @theme-dark;
+
+}
+
+#mediacatalog {
+  #contact;
+  text-align: left;
+
+}
+
+.parallax {
+  .background-cover;
+  background-image: url("../img/aboutbg1.png");
+
+
+}
+
+@media (min-width: 768px) {
+
 }
 
 

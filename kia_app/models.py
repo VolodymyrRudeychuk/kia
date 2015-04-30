@@ -46,6 +46,7 @@ class Category(models.Model):
     title = models.CharField(max_length='50')
     type = models.IntegerField(choices=TYPES)
     language = models.IntegerField(choices=LANGUAGES)
+    grade = models.CharField(max_length='50', blank=True)
 
     def __unicode__(self):
         return self.title

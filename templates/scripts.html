@@ -5,12 +5,9 @@
 <!-- jQuery -->
     <script src="{% static 'js/jquery.js' %}"></script>
 
-    <script src="{% static 'js/simpleparallax.min.js' %}"></script>
+    <script src="{% static 'js/jquery.myParallax.js' %}"></script>
 
-    <script>
-        $('.parallax').simpleParallax();
 
-    </script>
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
@@ -25,4 +22,10 @@
 
     <script>
     $('#example').popover(options)
-</script>
+    </script>
+
+         <script>
+        $("[data-parallax-image]").myParallax();
+
+    </script>
+

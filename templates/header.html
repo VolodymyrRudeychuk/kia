@@ -1,37 +1,53 @@
 {% load staticfiles %}
 
-<header>
-        <div class="header-content">
+ <header>
+
+        <div class="header-content" >
             <div class="header-content-inner">
-                <img src="{% static 'img/logo.png'%}" class="img-responsive center-block" alt=""/>
+
+               <img src="{% static 'img/logo.png'%}" class="img-responsive center-block wow bounceIn" alt=""/>
                 <hr>
                 <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
-                <div class="row">
+
 
                     {% if not request.user.is_authenticated %}
-                        <form action="/" method="POST">
-                            <div class="col-xs-6 col-xs-offset-2 col-md-4 col-md-offset-3">
+                        <form  action="/" method="POST">
+                            <div style="width: 40%" class="center-block">
                             {% csrf_token %}
                             {{ token_form.token }}
                             </div>
                             {{ token_form.token.errors }}
-                            <div class="col-xs-1">
-                                 <input type="submit" class="btn btn-primary btn-xl" value="Come In" />
-                            </div>
+
+                            <input style="margin-top: 10px" type="submit" class="btn btn-primary btn-xl center-block" value="Come In" />
+
                         </form>
-{#                        <input type="password" class="form-control input-lg" placeholder="Enter password.."><br/>#}
 
-                <div class="col-md-12"><a class="center-block" data-toggle="modal" data-target="#formModal" data-whatever="@getbootstrap">No password yet?</a></div>
 
+                        <div class="col-xs-12">
+                                        <a style="margin-top: 10px" class="center-block" data-toggle="modal" data-target="#formModal" data-whatever="@getbootstrap">No token yet?</a>
+                        </div>
                         {% else %}
-                       <div class="col-md-12"><h4>Hello {{ request.user.username }}!</h4>
-                           <a href="/catalog/"><button class="btn btn-primary btn-xl">Catalog</button></a>
-                           <a href="/logout/"><button class="btn btn-danger btn-xl">Logout</button></a>
+                       <div class="col-md-12"><h4 style="display:block; margin-bottom: 10px">Hello {{ request.user.username }}!</h4>
+
+                           <div class="btn-group dropup">
+  <button type="button" class="btn btn-xl btn-primary ">Select your grade level</button>
+  <button type="button" class="btn btn-xl btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <!-- Dropdown menu links -->
+       <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+{#                           <a href="/catalog/"><button class="btn btn-primary btn-xl">Catalog</button></a>#}
+                           <a href="/logout/"><button class="btn btn-danger btn-xl"><i style="font-size: 20px" class="fa fa-lg fa-power-off"></i></button></a>
                            </div>
                     {% endif %}
-
-
-            </div>
 
             </div>
         </div>
