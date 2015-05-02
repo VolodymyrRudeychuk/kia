@@ -37,8 +37,10 @@ class StatAdmin(admin.ModelAdmin):
 
 class CategoryAdmin(admin.ModelAdmin):
     inlines = [MediaInline, ]
+    list_filter = ('type', 'language', 'grade')
 
-    list_filter = ('type', 'language')
+
+
 
 
 admin.site.register(Media, admin.ModelAdmin)

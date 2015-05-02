@@ -22,8 +22,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def home(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST.get('token') is not None:
         # create a form instance and populate it with data from the request:
+        print request.POST
         form = TokenForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
@@ -52,6 +53,7 @@ def home(request):
         'front': Front.objects.first(),
         'message_form':  message_form,
         'token_form': form,
+        'grades': Category.GRADES
     })
 
 
@@ -60,22 +62,24 @@ def home(request):
 def catalog(request):
     language = int(request.GET.get('language', 1))
     category_id = request.GET.get('category', None)
+    grade = request.GET.get('grade', 0)
 
     if category_id is None:
-        category = Category.objects.filter(language=language).first()
+        category = Category.objects.filter(language=language, grade=grade).first()
     else:
-        category = Category.objects.get(id=int(category_id))
+        category = Category.objects.get(id=int(category_id), grade=grade)
 
-    media = Media.objects.filter(category=category, category__language=language)
-    video_categories = Category.objects.filter(type=1, language=language)
-    audio_categories = Category.objects.filter(type=2, language=language)
+    media = Media.objects.filter(category=category, category__language=language, category__grade=grade)
+    video_categories = Category.objects.filter(type=1, language=language, grade=grade)
+    audio_categories = Category.objects.filter(type=2, language=language, grade=grade)
 
     return render(request, 'catalog.html', {
         'current_language': language,
         'current_category': category,
         'audio_categories': audio_categories,
         'video_categories': video_categories,
-        'media': media})
+        'media': media,
+        'grade': grade})
 
 
 

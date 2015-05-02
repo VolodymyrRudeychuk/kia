@@ -15,7 +15,6 @@ class TokenForm(forms.Form):
         self.fields['token'].widget.attrs['class'] = 'form-control input-lg'
         self.fields['token'].widget.attrs['placeholder'] = 'Enter token'
 
-
     def clean_token(self):
         token = Token.objects.filter(token=self.cleaned_data['token'], active=True)
         if not token.exists():
@@ -27,7 +26,6 @@ class TokenForm(forms.Form):
     def login_user(self, request):
         self.token.user.backend = 'django.contrib.auth.backends.ModelBackend'
         login(request, self.token.user)
-        print 'privet', self.token.user
 
 
 class MessageForm(forms.ModelForm):

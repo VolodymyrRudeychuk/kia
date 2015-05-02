@@ -38,15 +38,28 @@ class Category(models.Model):
 
     )
 
-    LANGUAGES = {
+    LANGUAGES = (
         (1, 'English'),
         (2, 'French'),
-    }
+    )
+
+    GRADES = (
+        (0, 'Kindergarten (ages 4-5)'),
+        (1, 'Grade 1'),
+        (2, 'Grade 2'),
+        (3, 'Grade 3'),
+        (4, 'Grade 4'),
+        (5, 'Grade 5'),
+        (6, 'Grade 6'),
+        (7, 'Grade 7'),
+        (8, 'Grade 8'),
+        (9, 'Grade 9'),
+    )
 
     title = models.CharField(max_length='50')
+    grade = models.IntegerField(choices=GRADES)
     type = models.IntegerField(choices=TYPES)
     language = models.IntegerField(choices=LANGUAGES)
-    grade = models.CharField(max_length='50', blank=True)
 
     def __unicode__(self):
         return self.title

@@ -37,11 +37,11 @@
   </button>
   <ul class="dropdown-menu" role="menu">
     <!-- Dropdown menu links -->
-       <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li class="divider"></li>
-    <li><a href="#">Separated link</a></li>
+
+        {% for index, title in grades %}
+            <li><a href="/catalog/?grade={{ index }}">{{ title }}</a></li>
+        {% endfor %}
+
   </ul>
 </div>
 {#                           <a href="/catalog/"><button class="btn btn-primary btn-xl">Catalog</button></a>#}
