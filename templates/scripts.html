@@ -15,17 +15,20 @@
     <script src="{% static 'js/jquery.easing.min.js' %}"></script>
     <script src="{% static 'js/jquery.fittext.js' %}"></script>
     <script src="{% static 'js/wow.min.js' %}"></script>
-    <script src="{% static 'js/contact_me.js' %}"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="{% static 'js/creative.js' %}"></script>
-
-    <script>
-    $('#example').popover(options)
-    </script>
 
          <script>
         $("[data-parallax-image]").myParallax();
 
     </script>
+
+
+{% if message_form.errors %}
+    <script>
+       $(document).ready(function(){
+           $('#formModal').modal()
+       })
+    </script>
+{% endif %}
 

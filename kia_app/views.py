@@ -24,7 +24,6 @@ from django.views.decorators.csrf import csrf_exempt
 def home(request):
     if request.method == 'POST' and request.POST.get('token') is not None:
         # create a form instance and populate it with data from the request:
-        print request.POST
         form = TokenForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
@@ -36,18 +35,21 @@ def home(request):
     else:
         form = TokenForm()
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST.get('message'):
         # create a form instance and populate it with data from the request:
         message_form = MessageForm(request.POST)
         # check whether it's valid:
         if message_form.is_valid():
             message_form.save()
-            return HttpResponseRedirect('/')
+        else:
+            HttpResponseRedirect('/?message_not_valid=1')
+
 
     # if a GET (or any other method) we'll create a blank form
     else:
         message_form = MessageForm()
 
+    print message_form.errors
 
     return render(request, 'home.html', {
         'front': Front.objects.first(),

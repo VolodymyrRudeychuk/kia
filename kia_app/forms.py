@@ -34,7 +34,7 @@ class MessageForm(forms.ModelForm):
         fields = ('name', 'email', 'message',)
 
     def __init__(self, *args, **kwargs):
-        super(MessageForm, self).__init__(args, **kwargs)
+        super(MessageForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs['class'] = 'form-control input-md'
         self.fields['email'].widget.attrs['class'] = 'form-control input-md'
         self.fields['message'].widget.attrs['class'] = 'form-control input-md'
