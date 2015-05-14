@@ -469,3 +469,14 @@ body {
   -o-background-size: cover;
   background-image: url("../img/aboutbg1.png");
 }
+.errorlist {
+  text-align: left;
+  color: #cc2222;
+  font-size: 16px;
+  display: inline-block;
+  list-style: none;
+  border: 1px solid #CCCCCC;
+  padding: 1%;
+  border-radius: 5px;
+  font-weight: bolder;
+}

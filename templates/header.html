@@ -1,12 +1,10 @@
 {% load staticfiles %}
 
 <style>
-    .errorlist {
-     color: #cc2222;
-    }
+
 </style>
 
- <header>
+ <header data-speed="6" data-type="background">
 
         <div class="header-content" >
             <div class="header-content-inner">
@@ -17,12 +15,13 @@
 
 
                     {% if not request.user.is_authenticated %}
+                        {{ token_form.token.errors }}
                         <form  action="/" method="POST">
                             <div style="width: 40%" class="center-block">
                             {% csrf_token %}
                             {{ token_form.token }}
                             </div>
-                            {{ token_form.token.errors }}
+
 
                             <input style="margin-top: 10px" type="submit" class="btn btn-primary btn-xl center-block" value="Come In" />
 
@@ -30,13 +29,13 @@
 
 
                         <div class="col-xs-12">
-                                        <a style="margin-top: 10px" class="center-block" data-toggle="modal" data-target="#formModal" data-whatever="@getbootstrap">No token yet?</a>
+                                        <a style="margin-top: 10px; cursor: pointer"  class="center-block" data-toggle="modal" data-target="#formModal" data-whatever="@getbootstrap">No token yet?</a>
                         </div>
                         {% else %}
                        <div class="col-md-12"><h4 style="display:block; margin-bottom: 10px">Hello {{ request.user.username }}!</h4>
 
                            <div class="btn-group dropup">
-  <button type="button" class="btn btn-xl btn-primary ">Select your grade level</button>
+  <button type="button" class="btn btn-xl btn-primary " data-toggle="dropdown" aria-expanded="false">Select your grade level</button>
   <button type="button" class="btn btn-xl btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>

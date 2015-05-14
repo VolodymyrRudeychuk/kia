@@ -5,7 +5,8 @@
 <!-- jQuery -->
     <script src="{% static 'js/jquery.js' %}"></script>
 
-    <script src="{% static 'js/jquery.myParallax.js' %}"></script>
+{#    <script src="{% static 'js/jquery.myParallax.js' %}"></script>#}
+
 
 
     <!-- Bootstrap Core JavaScript -->
@@ -18,10 +19,10 @@
     <!-- Custom Theme JavaScript -->
     <script src="{% static 'js/creative.js' %}"></script>
 
-         <script>
-        $("[data-parallax-image]").myParallax();
-
-    </script>
+{#         <script>#}
+{#        $("[data-parallax-image]").myParallax();#}
+{##}
+{#    </script>#}
 
 
 {% if message_form.errors %}
@@ -32,3 +33,4 @@
     </script>
 {% endif %}
 
+<script type="text/javascript" src="{% static 'js/init.js' %}"></script>
