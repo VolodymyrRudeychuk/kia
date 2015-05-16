@@ -15,47 +15,35 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-from .forms import TokenForm, MessageForm
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
+from .forms import LoginOrRequest
+from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 
 @csrf_exempt
 def home(request):
-    if request.method == 'POST' and request.POST.get('token') is not None:
+    if request.method == 'POST' and request.POST.get('password') is not None:
         # create a form instance and populate it with data from the request:
-        form = TokenForm(request.POST)
+        form = LoginOrRequest(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            form.login_user(request)
-            Statistic.objects.create(token=form.token)
-            return HttpResponseRedirect('/catalog/')
+            if form.cleaned_data['email']:
+                form.send_message()
+                return HttpResponseRedirect('/?success=1')
+            else:
+                form.login_user(request)
+                Statistic.objects.create(user=form.school)
+                return HttpResponseRedirect('/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = TokenForm()
-
-    if request.method == 'POST' and request.POST.get('message'):
-        # create a form instance and populate it with data from the request:
-        message_form = MessageForm(request.POST)
-        # check whether it's valid:
-        if message_form.is_valid():
-            message_form.save()
-        else:
-            HttpResponseRedirect('/?message_not_valid=1')
-
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        message_form = MessageForm()
-
-    print message_form.errors
+        form = LoginOrRequest()
 
     return render(request, 'home.html', {
         'front': Front.objects.first(),
-        'message_form':  message_form,
-        'token_form': form,
-        'grades': Category.GRADES
+        'login_form': form,
+        'grades': Category.GRADES,
+        'success': request.GET.get('success')
     })
 
 

@@ -14,8 +14,11 @@ class MediaInline(admin.TabularInline):
     model = Media
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'message', 'date')
-    readonly_fields = ('name', 'email', 'message', 'date')
+    list_display = ('sc_name', 'email', 'date')
+    readonly_fields = ('sc_name', 'email', 'date')
+
+    def sc_name(self, obj):
+        return obj.school.first_name or obj.school
 
 
 class FrontAdmin(admin.ModelAdmin):
@@ -28,11 +31,8 @@ class TokenAdmin(admin.ModelAdmin):
 
 
 class StatAdmin(admin.ModelAdmin):
-    list_display = ('token_user', 'access_date')
-    list_filter = ('access_date', 'token__user')
-
-    def token_user(self, obj):
-        return obj.token.user
+    list_display = ('user', 'access_date')
+    list_filter = ('access_date', 'user')
 
 
 class CategoryAdmin(admin.ModelAdmin):

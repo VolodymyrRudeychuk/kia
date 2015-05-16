@@ -9,9 +9,8 @@ class Front(models.Model):
 
 
 class Message(models.Model):
-    name = models.CharField(max_length=255)
+    school = models.ForeignKey(User)
     email = models.EmailField(blank=True)
-    message = models.TextField(blank=True)
     date = models.DateTimeField(auto_now_add=True)
 
 
@@ -26,7 +25,7 @@ class Token(models.Model):
 
 
 class Statistic(models.Model):
-    token = models.ForeignKey('Token')
+    user = models.ForeignKey(User)
     access_date = models.DateTimeField(auto_now_add=True)
 
 

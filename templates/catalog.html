@@ -29,6 +29,23 @@
                 <a class="btn btn-default {% if current_language == 2 %}active{% endif %}" href="?language=2&grade={{ grade }}">French</a>
             </div>
         </div>
+    <div class="col-md-3 col-md-offset-2">
+         <div class="btn-group dropup">
+  <button type="button" class="btn btn-md btn-default " data-toggle="dropdown" aria-expanded="false">Select your grade level</button>
+  <button type="button" class="btn btn-md btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <!-- Dropdown menu links -->
+
+        {% for index, title in grades %}
+            <li><a href="/catalog/?grade={{ index }}">{{ title }}</a></li>
+        {% endfor %}
+
+  </ul>
+</div>
+    </div>
     </div>
 </div>
 <div class="container">
