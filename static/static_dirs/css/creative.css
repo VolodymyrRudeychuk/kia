@@ -460,12 +460,8 @@ body {
   text-align: left;
 }
 .parallax {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  background-image: url("../img/aboutbg1.png");
-    background-repeat: no-repeat;
+  background: url("../img/aboutbg1.png") no-repeat;
+
 }
 .errorlist {
   text-align: left;
