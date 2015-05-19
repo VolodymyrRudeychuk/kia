@@ -143,13 +143,12 @@ aside {
 header {
   position: relative;
   width: 100%;
-  min-height: auto;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
   text-align: center;
-  color: white;
+  background: url(../img/intro.png) 50% 0 fixed;
+  height: auto;
+  margin: 0 auto;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  padding: 100px 0;
 }
 header .header-content {
   position: relative;
@@ -407,15 +406,14 @@ body {
   bottom: 50px;
 }
 #about {
+  background: url('../img/aboutbg1.png') 50% 0 fixed;
+  height: auto;
+  margin: 0 auto;
   width: 100%;
-  min-height: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  padding: 200px 0;
   background-color: #6b5ca2;
-  text-align: center;
-  color: #222222;
 }
 .catalog {
   text-align: center;
@@ -440,15 +438,15 @@ body {
   margin-top: 6%;
 }
 #contact {
+  background: url(../img/contant.png) 50% 0 fixed;
+  height: auto;
+  margin: 0 auto;
   width: 100%;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  padding: 100px 0;
+  color: #fff;
   min-height: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  background-color: #fffbfb;
-  text-align: center;
-  color: #222222;
 }
 #mediacatalog {
   width: 100%;
@@ -458,7 +456,6 @@ body {
   background-size: cover;
   -o-background-size: cover;
   background-color: #fffbfb;
-  text-align: center;
   color: #222222;
   text-align: left;
 }
