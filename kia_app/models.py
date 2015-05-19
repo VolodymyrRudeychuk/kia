@@ -64,6 +64,8 @@ class Category(models.Model):
         return self.title
 
 
+
+
 class Media(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()

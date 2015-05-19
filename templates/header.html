@@ -13,7 +13,7 @@
                 <hr>
                 <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
 
-            {% if success %}Molodecj{% endif %}
+                        {% if success %}<p class="bg-success">Thank you! We will send password to you soon..</p>{% endif %}
                     {% if not request.user.is_authenticated %}
                         {{ login_form.password.errors }}
                         {{ login_form.schools.errors }}

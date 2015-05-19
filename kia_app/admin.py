@@ -38,6 +38,9 @@ class StatAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     inlines = [MediaInline, ]
     list_filter = ('type', 'language', 'grade')
+    save_as = True
+
+
 
 
 
