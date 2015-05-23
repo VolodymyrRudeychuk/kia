@@ -652,7 +652,7 @@ body .progression-skin .mejs-controls .mejs-horizontal-volume-slider .mejs-horiz
 	background: #ffffff;
 }
 .progression-skin .mejs-playlist ul {
-	max-height: 174px !important;
+	max-height: 250px !important;
 	width:100%;
 	overflow-y: auto;
 	list-style:none;

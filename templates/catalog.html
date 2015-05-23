@@ -5,7 +5,7 @@
 
 {#    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><!-- jQuery Latest -->#}
  <script src="{% static 'js/jquery.js' %}"></script>
-	<script src="{% static 'build/mediaelement-and-player.min.js' %}"></script><!-- Audio/Video Player jQuery -->
+	<script src="{% static 'build/mediaelement-and-player.js' %}"></script><!-- Audio/Video Player jQuery -->
 	<script src="{% static 'build/mep-feature-playlist.js' %}"></script><!-- Playlist JavaSCript -->
 
 	<link rel="stylesheet" href="{% static 'css/progression-player.css' %}" /><!-- Default Player Styles -->
@@ -20,32 +20,34 @@
 <body>
 
 {% block nav %}{% include 'nav.html' %}{% endblock %}
+
 <section id="mediacatalog">
 <div class="container">
     <div class="row">
+
+     <div class="btn-group dropup">
+  <button type="button" class="btn btn-xl btn-primary " data-toggle="dropdown" aria-expanded="false">Select your grade level</button>
+  <button type="button" class="btn btn-xl btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <!-- Dropdown menu links -->
+
+        {% for index, title in grades %}
+            <li><a href=?grade={{ index }}">{{ title }}</a></li>
+        {% endfor %}
+
+  </ul>
+</div>
+
         <div class="col-md-3">
             <div class="lang center-block" style="text-align: center">
                 <a class="btn btn-default {% if current_language == 1 %}active{% endif %}" href="?language=1&grade={{ grade }}">English</a>
                 <a class="btn btn-default {% if current_language == 2 %}active{% endif %}" href="?language=2&grade={{ grade }}">French</a>
             </div>
         </div>
-{#    <div class="col-md-3 col-md-offset-2">#}
-{#         <div class="btn-group dropup">#}
-{#  <button type="button" class="btn btn-md btn-default " data-toggle="dropdown" aria-expanded="false">Select your grade level</button>#}
-{#  <button type="button" class="btn btn-md btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">#}
-{#    <span class="caret"></span>#}
-{#    <span class="sr-only">Toggle Dropdown</span>#}
-{#  </button>#}
-{#  <ul class="dropdown-menu" role="menu">#}
-{#    <!-- Dropdown menu links -->#}
-{##}
-{#        {% for index, title in grades %}#}
-{#            <li><a href="/catalog/?grade={{ index }}">{{ title }}</a></li>#}
-{#        {% endfor %}#}
-{##}
-{#  </ul>#}
-{#</div>#}
-{#    </div>#}
+
     </div>
 </div>
 <div class="container">
@@ -86,7 +88,8 @@
             <h3 class="catalog active"><strong>{{current_category.get_grade_display }}: {{ current_category.title }}<strong></h3>
          {% if current_category.type == 2 %}
             <div class="progression-playlist-height responsive-wrapper responsive-audio" style="max-width:100%; padding-bottom:174px;"><!-- Adjust padding-bottom as needed so the playlist doesn't cover content below -->
-                <audio class="progression-playlist progression-skin progression-minimal-light progression-audio-player" controls="controls" preload="none">                     {% for item in media %}
+                <audio class="progression-playlist progression-skin progression-minimal-light progression-audio-player" controls="controls" preload="none">
+                    {% for item in media %}
                     <source src="{{ item.url }}" title="{{ item.name }}" type="audio/mpeg"/>
                     {% endfor %}
                 </audio>
@@ -132,7 +135,7 @@ $('.progression-playlist').mediaelementplayer({
 	audioWidth: 700, // width of audio player
 	audioHeight:40, // height of audio player
 	startVolume: 0.5, // initial volume when the player starts
-	loop: false, // useful for <audio> player loops
+	loop: true, // useful for <audio> player loops
 	features: ['playlistfeature', 'prevtrack', 'playpause', 'nexttrack','current', 'progress', 'duration', 'volume', 'playlist'],
 	playlist: true, //Playlist Show
 	playlistposition: 'bottom' //Playlist Location
