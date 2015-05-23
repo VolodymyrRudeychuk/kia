@@ -25,28 +25,15 @@
 <div class="container">
     <div class="row">
 
-     <div class="btn-group dropup">
-  <button type="button" class="btn btn-xl btn-primary " data-toggle="dropdown" aria-expanded="false">Select your grade level</button>
-  <button type="button" class="btn btn-xl btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-    <span class="caret"></span>
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <!-- Dropdown menu links -->
-
-        {% for index, title in grades %}
-            <li><a href=?grade={{ index }}">{{ title }}</a></li>
-        {% endfor %}
-
-  </ul>
-</div>
-
         <div class="col-md-3">
             <div class="lang center-block" style="text-align: center">
                 <a class="btn btn-default {% if current_language == 1 %}active{% endif %}" href="?language=1&grade={{ grade }}">English</a>
                 <a class="btn btn-default {% if current_language == 2 %}active{% endif %}" href="?language=2&grade={{ grade }}">French</a>
             </div>
         </div>
+    <div class="col-md-3 col-md-offset-6">
+  <a href="../#page-top" type="button" class="btn btn-xl btn-primary " aria-expanded="false"><i class="fa fa-arrow-left fa-1x"></i>  Back for select grade level</a>
+</div>
 
     </div>
 </div>
