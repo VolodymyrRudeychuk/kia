@@ -10,9 +10,16 @@
             <div class="header-content-inner">
 
                <img src="{% static 'img/logo.png'%}" class="img-responsive center-block headlogo" alt=""/>
-                <hr>
-                <p class="tittle_head">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
 
+             {% if not request.user.is_authenticated %}
+                  <hr>
+                <p style="font-size: 15px">Early bird pricing for your 1, 2 or 3 year subscription is now available!!!<br/>
+
+Enjoy our resources for FREE for the remainder of the 2014-2015 school year
+
+Our library is now available to stream online - Enter your information below or contact us for a free password.</p>
+            {% endif %}
+<div  {% if not request.user.is_authenticated %} style="margin-top: -4%" {% else %}style="margin-top: 7%" {% endif %} class="col-md-12">
                         {% if success %}<p class="bg-success">Thank you! We will send password to you soon..</p>{% endif %}
                     {% if not request.user.is_authenticated %}
                         {{ login_form.password.errors }}
@@ -38,11 +45,11 @@
 
 
                         </form>
-
+                        </div>
 
 
                         {% else %}
-                       <div class="col-md-12"><h4 style="display:block; margin-bottom: 10px">Hello {{ request.user.firstname }}!</h4>
+                       <div class="col-md-12"><h4 style="display:block; margin-bottom: 10px; font-size: 24px">Hello {{ request.user.first_name }}!</h4>
 
                            <div class="btn-group dropup">
   <button type="button" class="btn btn-xl btn-primary " data-toggle="dropdown" aria-expanded="false">Select your grade level</button>
