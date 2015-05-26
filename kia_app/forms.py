@@ -20,7 +20,9 @@ class LoginOrRequest(forms.Form):
         self.fields['password'].widget.attrs['class'] = 'form-control input-md'
         self.fields['password'].widget.attrs['placeholder'] = 'Enter password'
         self.fields['email'].widget.attrs['class'] = 'form-control input-md'
-        self.fields['email'].widget.attrs['placeholder'] = 'Enter Email'
+        self.fields['email'].widget.attrs['placeholder'] = 'Email - to receive your free password'
+
+
 
     def clean(self):
         if not self.cleaned_data['password'] and not self.cleaned_data['email']:
@@ -36,7 +38,7 @@ class LoginOrRequest(forms.Form):
 
     def clean_schools(self):
         if not int(self.cleaned_data['schools']):
-            raise forms.ValidationError('Choos School')
+            raise forms.ValidationError('Choose School')
         self.school = User.objects.get(id=self.cleaned_data['schools'])
         return self.cleaned_data['schools']
 
