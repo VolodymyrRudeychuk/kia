@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 def schools():
     sls = User.objects.filter(is_staff=False)
-    return [(0, "-- select school --"), ] + [(school.id, school.first_name) for school in sls]
+    return [(school.id, school.first_name) for school in sls]
 
 
 class LoginOrRequest(forms.Form):
