@@ -43,7 +43,7 @@ class Category(models.Model):
     )
 
     GRADES = (
-        (0, 'Kindergarten (ages 4-5)'),
+        (0, 'Ages 4-5'),
         (1, 'Grade 1'),
         (2, 'Grade 2'),
         (3, 'Grade 3'),
