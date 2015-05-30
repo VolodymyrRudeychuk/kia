@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 def schools():
-    sls = User.objects.filter(is_staff=False)
+    sls = User.objects.filter(is_staff=False).order_by('first_name')
     return [(school.id, school.first_name) for school in sls]
 
 

@@ -17,6 +17,7 @@
     <script src="{% static 'js/wow.min.js' %}"></script>
     <!-- Custom Theme JavaScript -->
     <script src="{% static 'js/creative.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
 
 {#         <script>#}
 {#        $("[data-parallax-image]").myParallax();#}
@@ -37,6 +38,20 @@
 <script>
     $(function () {
   $('[data-toggle="popover"]').popover()
-})
+});
+
+    $('a').click(function(){
+        window.a_clicked = true;
+    });
+
+    window.onbeforeunload = function(e) {
+
+        if (!window.a_clicked)
+        {
+          $.removeCookie('sessionid', { path: '/' });
+        }
+
+       return null
+    };
 </script>
 

@@ -12,6 +12,7 @@
     <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
 
 	<link rel="stylesheet" href="{% static 'css/skin-minimal-light.css' %}" />
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
 
 </head>
 
@@ -127,15 +128,29 @@ $('.progression-playlist').mediaelementplayer({
 	playlist: true, //Playlist Show
 	playlistposition: 'bottom' //Playlist Location
 	});
-</script>
 
-<script>
+
 $('.progression-single').mediaelementplayer({
 	audioWidth: 400, // width of audio player
 	audioHeight:40, // height of audio player
 	startVolume: 0.5, // initial volume when the player starts
 	features: ['playpause','current','progress','duration','tracks','volume','fullscreen']
 	});
+
+
+    $('a').click(function(){
+        window.a_clicked = true;
+    });
+
+    window.onbeforeunload = function(e) {
+
+        if (!window.a_clicked)
+        {
+          $.removeCookie('sessionid', { path: '/' });
+        }
+
+       return null
+    };
 </script>
 
 </body>
