@@ -19,6 +19,7 @@ Enjoy our resources for FREE for the remainder of the 2014-2015 school year
 
 Our library is now available to stream online - Enter your information below or contact us for a free password.</p>
             {% endif %}
+
 <div  {% if not request.user.is_authenticated %} style="margin-top: -4%" {% else %}style="margin-top: 7%" {% endif %} class="col-md-12">
                         {% if success %}<p class="bg-success">Thank you! We will send password to you soon..</p>{% endif %}
                     {% if not request.user.is_authenticated %}
@@ -33,12 +34,16 @@ Our library is now available to stream online - Enter your information below or 
                                {{ login_form.schools.label }}: {{ login_form.schools }}
                                 <div class="row">
                           <div class="col-md-6">{{ login_form.password.label }}: {{ login_form.password }}</div>
-                              <div class="col-md-6"> {{ login_form.email.label }}: {{ login_form.email }}
+                              <div class="col-md-6"> {{ login_form.email.label }}
+                                      {{ login_form.email }}
                               </div>
 
                                     </div>
 
-                                <input style="margin-top: 10px" type="submit" class="btn btn-primary btn-md center-block" value="ENTER" />
+                                <input style="margin-top: 10px; display: inline-block" type="submit" class="btn btn-primary btn-md center-block" value="ENTER" />
+                                <a style="margin-top: 10px; display: inline-block" class="btn btn-danger btn-md" data-toggle="popover" aria-label="Close" data-content="If you don't have password, enter you email - to receive your free password. ">HELP</a>
+
+
                             </div>
 
 
