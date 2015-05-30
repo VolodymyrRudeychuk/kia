@@ -121,4 +121,6 @@ MEDIA_URL = '/media/'
 
 SESSION_COOKIE_HTTPONLY = False
 
+LOGIN_REDIRECT_URL = '/'
+
 
