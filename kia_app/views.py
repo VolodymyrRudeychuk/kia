@@ -27,7 +27,11 @@ def home(request):
         form = LoginOrRequest(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            if form.cleaned_data['email']:
+            if form.cleaned_data['password']:
+                form.login_user(request)
+                Statistic.objects.create(user=form.school)
+                return HttpResponseRedirect('/')
+            elif form.cleaned_data['email']:
                 form.send_message()
                 return HttpResponseRedirect('/?success=1')
             else:
